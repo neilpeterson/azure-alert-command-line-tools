@@ -9,8 +9,8 @@ import click
 import csv
 import os
 
-subscription = "65ae371b-6c46-4e36-8a7b-93efb1f2c2bd"
-llm = OpenAI(api_token='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')
+subscription = ""
+llm = OpenAI(api_token='')
 alerts_csv = "alerts.csv"
 plot_terminal = True
 plot_window = False
@@ -19,7 +19,7 @@ plot_window = False
 def cli():
     pass
 
-def plot_pandas(alerts):
+def plot_window(alerts):
 
     alerts.plot(kind='line')
     plt.title('Number of alerts per day')
@@ -37,6 +37,22 @@ def plot_terminal(alerts):
     pltconsole.title('Number of alerts per day')
     pltconsole.theme("pro")
     pltconsole.show()
+
+def return_df():
+
+    var_local_alerts_csv = alerts_csv
+    df = pd.read_csv(var_local_alerts_csv)
+
+    # Convert the 'start_date_time' column to datetime64
+    df['start_date_time'] = pd.to_datetime(df['start_date_time'])
+
+    # Set the index to the 'start_date_time' column
+    df.set_index('start_date_time', inplace=True)
+
+    # Sort the DataFrame by the index
+    df.sort_index(inplace=True)
+
+    return df
 
 @click.command()
 @click.option('--range', default='7d', type=click.Choice(['1h', '1d', '7d', '30d']))
@@ -65,49 +81,26 @@ def load_alerts(range):
 @click.command()
 def plot_pandas():
 
-    var_local_alerts_csv = alerts_csv
-    df = pd.read_csv(var_local_alerts_csv)
-
-    # Convert the 'start_date_time' column to datetime64
-    df['start_date_time'] = pd.to_datetime(df['start_date_time'])
-
-    # Set the index to the 'start_date_time' column
-    df.set_index('start_date_time', inplace=True)
-
-    # Sort the DataFrame by the index
-    df.sort_index(inplace=True)
-
-    # Resample the DataFrame by day and count the number of alerts each day
-    daily_alerts = df.resample('H').size()
-        
-    plot_pandas(daily_alerts)
+    # Get datafram and resample day and count the number of alerts each day.
+    daily_alerts = return_df()
+    daily_alerts_resample = daily_alerts.resample('H').size()
+    plot_window(daily_alerts_resample)
 
 @click.command()
 def plot_console():
 
-    var_local_alerts_csv = alerts_csv
-    df = pd.read_csv(var_local_alerts_csv)
+    # Get datafram and resample day and count the number of alerts each day.
+    daily_alerts = return_df()
+    daily_alerts_resample = daily_alerts.resample('H').size()
+    plot_terminal(daily_alerts_resample)
 
-    # Convert the 'start_date_time' column to datetime64
-    df['start_date_time'] = pd.to_datetime(df['start_date_time'])
+@click.command()
+def pandas_ai():
 
-    # Set the index to the 'start_date_time' column
-    df.set_index('start_date_time', inplace=True)
+    daily_alerts = return_df()
+    df = SmartDataframe(daily_alerts, config={"llm": llm})
 
-    # Sort the DataFrame by the index
-    df.sort_index(inplace=True)
-
-    # Resample the DataFrame by day and count the number of alerts each day
-    daily_alerts = df.resample('H').size()
-        
-    plot_terminal(daily_alerts)
-
-"""
-
-df = SmartDataframe(df, config={"llm": llm})
-
-user_input = ""
-while user_input != "quit()":
+    print('Alerts loaded, please enter a query or type \'quit()\' to exit')
 
     user_input = input()
     openai_response = df.chat(user_input)
@@ -115,29 +108,19 @@ while user_input != "quit()":
     if isinstance(openai_response, SmartDataframe):
 
         print('Enter a new query or type \'quit()\' to exit')
+        print()
 
         # Resample the DataFrame by day and count the number of alerts each day
         daily_alerts = openai_response.resample('H').size()
-
-        print(daily_alerts)
-
-        # This is kind of redundant, a Pandas plot can be generated with pandasai.
-        # if plot_window:
-        #     plot_pandas(daily_alerts)
-
-        # if plot_terminal:
-        #     plot_terminal_fun(daily_alerts)
-
         print(openai_response)
     else:
         print(openai_response)
         print('Enter a new query or type \'quit()\' to exit')
 
-"""
-
 cli.add_command(load_alerts)
 cli.add_command(plot_pandas)
 cli.add_command(plot_console)
+cli.add_command(pandas_ai)
 
 if __name__ == '__main__':
     cli()
