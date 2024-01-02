@@ -27,6 +27,17 @@ def plot_pandas(alerts):
     plt.ylabel('Number of alerts')
     plt.show()
 
+def plot_terminal(alerts):
+
+    dates = pd.to_datetime(alerts.index).strftime("%d/%m/%Y %H:%M")
+    dates = dates.drop_duplicates().tolist()
+
+    pltconsole.date_form("d/m/Y H:M")
+    pltconsole.plot(dates, alerts)
+    pltconsole.title('Number of alerts per day')
+    pltconsole.theme("pro")
+    pltconsole.show()
+
 @click.command()
 @click.option('--range', default='7d', type=click.Choice(['1h', '1d', '7d', '30d']))
 def load_alerts(range):
@@ -45,7 +56,6 @@ def load_alerts(range):
         alert_list.append(alert.properties.essentials.as_dict())
 
     df = pd.DataFrame(alert_list)
-    print(df)
 
     if os.path.exists(var_local_alerts_csv):
         os.remove(var_local_alerts_csv)
@@ -53,64 +63,46 @@ def load_alerts(range):
     df.to_csv(var_local_alerts_csv, index=False)
 
 @click.command()
-def pandas_df():
+def plot_pandas():
 
     var_local_alerts_csv = alerts_csv
     df = pd.read_csv(var_local_alerts_csv)
 
-    print(df)
+    # Convert the 'start_date_time' column to datetime64
+    df['start_date_time'] = pd.to_datetime(df['start_date_time'])
 
-    # # Convert the 'start_date_time' column to datetime64
-    # df['start_date_time'] = pd.to_datetime(df['start_date_time'])
+    # Set the index to the 'start_date_time' column
+    df.set_index('start_date_time', inplace=True)
 
-    # # Set the index to the 'start_date_time' column
-    # df.set_index('start_date_time', inplace=True)
+    # Sort the DataFrame by the index
+    df.sort_index(inplace=True)
 
-    # # Sort the DataFrame by the index
-    # df.sort_index(inplace=True) 
+    # Resample the DataFrame by day and count the number of alerts each day
+    daily_alerts = df.resample('H').size()
         
-    plot_pandas(df)
+    plot_pandas(daily_alerts)
+
+@click.command()
+def plot_console():
+
+    var_local_alerts_csv = alerts_csv
+    df = pd.read_csv(var_local_alerts_csv)
+
+    # Convert the 'start_date_time' column to datetime64
+    df['start_date_time'] = pd.to_datetime(df['start_date_time'])
+
+    # Set the index to the 'start_date_time' column
+    df.set_index('start_date_time', inplace=True)
+
+    # Sort the DataFrame by the index
+    df.sort_index(inplace=True)
+
+    # Resample the DataFrame by day and count the number of alerts each day
+    daily_alerts = df.resample('H').size()
+        
+    plot_terminal(daily_alerts)
 
 """
-
-def plot_terminal_fun(alerts):
-
-    dates = pd.to_datetime(alerts.index).strftime("%d/%m/%Y %H:%M")
-    dates = dates.drop_duplicates().tolist()
-
-    pltconsole.date_form("d/m/Y H:M")
-    pltconsole.plot(dates, alerts)
-    pltconsole.title('Number of alerts per day')
-    pltconsole.theme("pro")
-    pltconsole.show()
-
-def plot_pandas(alerts):
-
-    alerts.plot(kind='line')
-    plt.title('Number of alerts per day')
-    plt.xlabel('Date')
-    plt.ylabel('Number of alerts')
-    plt.show()
-
-# client = AlertsManagementClient(
-#     credential,
-#     subscription
-# )
-
-# alert_list = []
-# for alert in client.alerts.get_all(time_range="30d"):
-#     alert_list.append(alert.properties.essentials.as_dict())
-
-df = pd.DataFrame(alert_list)
-
-# Convert the 'start_date_time' column to datetime64
-df['start_date_time'] = pd.to_datetime(df['start_date_time'])
-
-# Set the index to the 'start_date_time' column
-df.set_index('start_date_time', inplace=True)
-
-# Sort the DataFrame by the index
-df.sort_index(inplace=True)
 
 df = SmartDataframe(df, config={"llm": llm})
 
@@ -144,7 +136,8 @@ while user_input != "quit()":
 """
 
 cli.add_command(load_alerts)
-cli.add_command(pandas_df)
+cli.add_command(plot_pandas)
+cli.add_command(plot_console)
 
 if __name__ == '__main__':
     cli()
