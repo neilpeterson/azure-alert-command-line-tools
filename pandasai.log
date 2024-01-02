@@ -146,3 +146,1090 @@ Generate python code and return full updated code:
 2024-01-01 21:58:13 [INFO] Executing Step 2: CodeGenerator
 2024-01-01 21:58:13 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 401 Unauthorized"
 2024-01-01 21:58:13 [ERROR] Pipeline failed on step 2: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-9moBM***************************************S7st. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+2024-01-02 10:50:52 [INFO] Question: Show alerts
+2024-01-02 10:50:53 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:50:53 [INFO] Prompt ID: 6cc7442d-3761-49c0-b4fa-e6b1de693ec2
+2024-01-02 10:50:53 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:50:53 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:50:53 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: Show alerts
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 10:50:53 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:50:55 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:50:55 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+alerts_df = dfs[0]
+result = {"type": "dataframe", "value": alerts_df}
+result
+            ```
+            
+2024-01-02 10:50:55 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:50:55 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:50:55 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:50:55 [INFO] 
+Code running:
+```
+alerts_df = dfs[0]
+result = {'type': 'dataframe', 'value': alerts_df}
+result
+        ```
+2024-01-02 10:50:55 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:50:55 [INFO] Answer: {'type': 'dataframe', 'value':                                  severity signal_type alert_state  ...                     source_created_id      last_modified_date_time last_modified_user_name
+start_date_time                                                    ...                                                                                           
+2023-12-24 06:56:27.051624+00:00     Sev3         Log         New  ...  fe85eb9a-75aa-49d8-b610-9e6efde24a7a  2023-12-24T06:56:27.051624Z                  System
+2023-12-24 07:06:23.500119+00:00     Sev3         Log         New  ...  1bab41d3-706e-4566-9f63-77315c2005b6  2023-12-24T07:06:23.500119Z                  System
+2023-12-24 07:21:23.281760+00:00     Sev3         Log         New  ...  6dcf2af3-0d7e-4000-bc22-a7644fe480ea   2023-12-24T07:21:23.28176Z                  System
+2023-12-24 09:16:22.544307+00:00     Sev3         Log         New  ...  e685f8e4-17a1-445d-994b-298e6770c9d6  2023-12-24T09:16:22.544307Z                  System
+2023-12-24 10:06:22.893960+00:00     Sev3         Log         New  ...  8ba65e1c-2cdf-41b2-ba18-260024498c8e   2023-12-24T10:06:22.89396Z                  System
+...                                   ...         ...         ...  ...                                   ...                          ...                     ...
+2024-01-01 18:26:23.555340+00:00     Sev3         Log         New  ...  c901e3d4-49fc-453a-88ce-21be642a6bde   2024-01-01T18:26:23.55534Z                  System
+2024-01-01 19:33:52.704743+00:00     Sev3         Log         New  ...  21cd2804-6782-4341-a6cf-dfbcf2b0ee38  2024-01-01T19:33:52.704743Z                  System
+2024-01-01 20:01:22.555689+00:00     Sev3         Log         New  ...  b62f22a8-bf58-49c1-8558-8be488b6ffdb  2024-01-01T20:01:22.555689Z                  System
+2024-01-01 21:11:24.131165+00:00     Sev3         Log         New  ...  0938ee51-d34b-41cc-9411-8c20d45c85df  2024-01-01T21:11:24.131165Z                  System
+2024-01-01 22:06:25.689930+00:00     Sev3         Log         New  ...  c2acb05f-d707-4bd2-8898-d80250de910b   2024-01-01T22:06:25.68993Z                  System
+
+[313 rows x 13 columns]}
+2024-01-02 10:50:55 [INFO] Executed in: 2.1336829662323s
+2024-01-02 10:50:55 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:51:18 [INFO] Question: plot alerts
+2024-01-02 10:51:18 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:51:18 [INFO] Prompt ID: 3a0aad88-47be-4398-8d18-97827790dd64
+2024-01-02 10:51:18 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:51:18 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:51:18 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: plot alerts
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 10:51:18 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:51:27 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:51:27 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df = df.sort_values('last_modified_date_time')
+
+plt.figure(figsize=(10, 6))
+plt.plot(df['last_modified_date_time'], df['severity'], marker='o')
+plt.xlabel('Last Modified Date')
+plt.ylabel('Severity')
+plt.title('Alerts')
+plt.xticks(rotation=45)
+plt.grid(True)
+
+# Save the plot to a file
+plt.savefig('alerts_plot.png')
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": "alerts_plot.png"
+}
+            ```
+            
+2024-01-02 10:51:27 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:51:27 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:51:27 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:51:27 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df = df.sort_values('last_modified_date_time')
+plt.figure(figsize=(10, 6))
+plt.plot(df['last_modified_date_time'], df['severity'], marker='o')
+plt.xlabel('Last Modified Date')
+plt.ylabel('Severity')
+plt.title('Alerts')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.savefig('/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
+        ```
+2024-01-02 10:51:28 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:51:28 [INFO] Answer: {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
+2024-01-02 10:51:28 [INFO] Executed in: 9.873632907867432s
+2024-01-02 10:51:28 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:52:07 [INFO] Question: show alerts
+2024-01-02 10:52:07 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:52:07 [INFO] Prompt ID: 7b230c72-2e12-495e-8f28-6e786f47db69
+2024-01-02 10:52:07 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:52:07 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:52:07 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: show alerts
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 10:52:07 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:52:12 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:52:12 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+alerts_df = dfs[0]
+alerts_df
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+result = {
+    "type": "dataframe",
+    "value": alerts_df
+}
+            ```
+            
+2024-01-02 10:52:12 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:52:12 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:52:12 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:52:12 [INFO] 
+Code running:
+```
+alerts_df = dfs[0]
+alerts_df
+result = {'type': 'dataframe', 'value': alerts_df}
+        ```
+2024-01-02 10:52:12 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:52:12 [INFO] Answer: {'type': 'dataframe', 'value':                                  severity signal_type alert_state  ...                     source_created_id      last_modified_date_time last_modified_user_name
+start_date_time                                                    ...                                                                                           
+2023-12-24 06:56:27.051624+00:00     Sev3         Log         New  ...  fe85eb9a-75aa-49d8-b610-9e6efde24a7a  2023-12-24T06:56:27.051624Z                  System
+2023-12-24 07:06:23.500119+00:00     Sev3         Log         New  ...  1bab41d3-706e-4566-9f63-77315c2005b6  2023-12-24T07:06:23.500119Z                  System
+2023-12-24 07:21:23.281760+00:00     Sev3         Log         New  ...  6dcf2af3-0d7e-4000-bc22-a7644fe480ea   2023-12-24T07:21:23.28176Z                  System
+2023-12-24 09:16:22.544307+00:00     Sev3         Log         New  ...  e685f8e4-17a1-445d-994b-298e6770c9d6  2023-12-24T09:16:22.544307Z                  System
+2023-12-24 10:06:22.893960+00:00     Sev3         Log         New  ...  8ba65e1c-2cdf-41b2-ba18-260024498c8e   2023-12-24T10:06:22.89396Z                  System
+...                                   ...         ...         ...  ...                                   ...                          ...                     ...
+2024-01-01 18:26:23.555340+00:00     Sev3         Log         New  ...  c901e3d4-49fc-453a-88ce-21be642a6bde   2024-01-01T18:26:23.55534Z                  System
+2024-01-01 19:33:52.704743+00:00     Sev3         Log         New  ...  21cd2804-6782-4341-a6cf-dfbcf2b0ee38  2024-01-01T19:33:52.704743Z                  System
+2024-01-01 20:01:22.555689+00:00     Sev3         Log         New  ...  b62f22a8-bf58-49c1-8558-8be488b6ffdb  2024-01-01T20:01:22.555689Z                  System
+2024-01-01 21:11:24.131165+00:00     Sev3         Log         New  ...  0938ee51-d34b-41cc-9411-8c20d45c85df  2024-01-01T21:11:24.131165Z                  System
+2024-01-01 22:06:25.689930+00:00     Sev3         Log         New  ...  c2acb05f-d707-4bd2-8898-d80250de910b   2024-01-01T22:06:25.68993Z                  System
+
+[313 rows x 13 columns]}
+2024-01-02 10:52:12 [INFO] Executed in: 4.912880897521973s
+2024-01-02 10:52:12 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:52:30 [INFO] Question: create a line chart of alerts
+2024-01-02 10:52:30 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:52:30 [INFO] Prompt ID: d3aa466e-440c-417d-9fb7-ef6ad6b71d36
+2024-01-02 10:52:30 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:52:30 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:52:30 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: create a line chart of alerts
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 10:52:30 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:52:34 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:52:35 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df = df.sort_values('last_modified_date_time')
+
+plt.plot(df['last_modified_date_time'], df['severity'])
+plt.xlabel('Date')
+plt.ylabel('Severity')
+plt.title('Alerts')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot as an image file
+plt.savefig('alerts_chart.png')
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": "alerts_chart.png"
+}
+            ```
+            
+2024-01-02 10:52:35 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:52:35 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:52:35 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:52:35 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df = df.sort_values('last_modified_date_time')
+plt.plot(df['last_modified_date_time'], df['severity'])
+plt.xlabel('Date')
+plt.ylabel('Severity')
+plt.title('Alerts')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
+        ```
+2024-01-02 10:52:35 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:52:35 [INFO] Answer: {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
+2024-01-02 10:52:35 [INFO] Executed in: 5.051411867141724s
+2024-01-02 10:52:35 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:52:52 [INFO] Question: create line chart of alerts per day
+2024-01-02 10:52:52 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:52:52 [INFO] Prompt ID: 77c46082-ad0e-4603-a457-e141787da78a
+2024-01-02 10:52:52 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:52:52 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:52:52 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: create line chart of alerts per day
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 10:52:52 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:53:03 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:53:03 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df['date'] = df['last_modified_date_time'].dt.date
+alerts_per_day = df.groupby('date').size()
+
+# Create line chart
+plt.plot(alerts_per_day.index, alerts_per_day.values)
+plt.xlabel('Date')
+plt.ylabel('Number of Alerts')
+plt.title('Alerts per Day')
+
+# Save the chart as an image file
+chart_file = 'alerts_per_day.png'
+plt.savefig(chart_file)
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": chart_file
+}
+            ```
+            
+2024-01-02 10:53:03 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:53:03 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:53:03 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:53:03 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df['date'] = df['last_modified_date_time'].dt.date
+alerts_per_day = df.groupby('date').size()
+plt.plot(alerts_per_day.index, alerts_per_day.values)
+plt.xlabel('Date')
+plt.ylabel('Number of Alerts')
+plt.title('Alerts per Day')
+chart_file = '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'
+plt.savefig(chart_file)
+result = {'type': 'plot', 'value': chart_file}
+        ```
+2024-01-02 10:53:04 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:53:04 [INFO] Answer: {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
+2024-01-02 10:53:04 [INFO] Executed in: 11.402951955795288s
+2024-01-02 10:53:04 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:55:44 [INFO] Question: how manuy alerts yesterday?
+2024-01-02 10:55:44 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:55:44 [INFO] Prompt ID: dc53da27-8082-4e12-b693-1bdac57db3db
+2024-01-02 10:55:44 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:55:44 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:55:44 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: how manuy alerts yesterday?
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 10:55:44 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:55:47 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:55:47 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+yesterday_alerts = 0
+for df in dfs:
+    yesterday_alerts += len(df[df['last_modified_date_time'].dt.date == pd.Timestamp.now().date() - pd.DateOffset(days=1)])
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": yesterday_alerts
+}
+            ```
+            
+2024-01-02 10:55:47 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:55:47 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:55:47 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:55:47 [INFO] 
+Code running:
+```
+yesterday_alerts = 0
+for df in dfs:
+    yesterday_alerts += len(df[df['last_modified_date_time'].dt.date == pd.Timestamp.now().date() - pd.DateOffset(days=1)])
+result = {'type': 'number', 'value': yesterday_alerts}
+        ```
+2024-01-02 10:55:47 [WARNING] Failed to execute code with a correction framework [retry number: 1]
+2024-01-02 10:55:48 [ERROR] Failed with error: Traceback (most recent call last):
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandasai/pipelines/smart_datalake_chat/code_execution.py", line 46, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandasai/helpers/code_manager.py", line 207, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 3, in <module>
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandas/core/generic.py", line 5902, in __getattr__
+    return object.__getattribute__(self, name)
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandas/core/accessor.py", line 182, in __get__
+    accessor_obj = self._accessor(obj)
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandas/core/indexes/accessors.py", line 512, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+. Retrying
+2024-01-02 10:55:48 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+</dataframe>
+
+The user asked the following question:
+Q: how manuy alerts yesterday?
+
+You generated this python code:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+yesterday_alerts = 0
+for df in dfs:
+    yesterday_alerts += len(df[df['last_modified_date_time'].dt.date == pd.Timestamp.now().date() - pd.DateOffset(days=1)])
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": yesterday_alerts
+}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandasai/pipelines/smart_datalake_chat/code_execution.py", line 46, in execute
+    result = pipeline_context.query_exec_tracker.execute_func(
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandasai/helpers/query_exec_tracker.py", line 128, in execute_func
+    result = function(*args, **kwargs)
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandasai/helpers/code_manager.py", line 207, in execute_code
+    exec(code_to_run, environment)
+  File "<string>", line 3, in <module>
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandas/core/generic.py", line 5902, in __getattr__
+    return object.__getattribute__(self, name)
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandas/core/accessor.py", line 182, in __get__
+    accessor_obj = self._accessor(obj)
+  File "/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/venv/lib/python3.9/site-packages/pandas/core/indexes/accessors.py", line 512, in __new__
+    raise AttributeError("Can only use .dt accessor with datetimelike values")
+AttributeError: Can only use .dt accessor with datetimelike values
+
+
+Fix the python code above and return the new python code:
+2024-01-02 10:55:51 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:55:51 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:55:51 [INFO] 
+Code running:
+```
+yesterday_alerts = 0
+for df in dfs:
+    df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+    yesterday_alerts += len(df[df['last_modified_date_time'].dt.date == pd.Timestamp.now().date() - pd.DateOffset(days=1)])
+result = {'type': 'number', 'value': yesterday_alerts}
+        ```
+2024-01-02 10:55:51 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:55:51 [INFO] Answer: {'type': 'number', 'value': 30}
+2024-01-02 10:55:51 [INFO] Executed in: 6.71040678024292s
+2024-01-02 10:55:51 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:56:22 [INFO] Question: quit()
+2024-01-02 10:56:22 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:56:22 [INFO] Prompt ID: 0febabc9-fe97-4a23-87c9-51f80125adaf
+2024-01-02 10:56:22 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:56:22 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:56:22 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: quit()
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 10:56:22 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:56:24 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:56:24 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+result = {"type": "string", "value": f"The number of rows in the dataframe is {len(df)}."}
+
+result
+            ```
+            
+2024-01-02 10:56:24 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:56:24 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:56:24 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:56:24 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 10:56:24 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:56:24 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 10:56:24 [INFO] Executed in: 2.159395933151245s
+2024-01-02 10:56:24 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:56:44 [INFO] Question: how many alerts
+2024-01-02 10:56:44 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:56:44 [INFO] Prompt ID: 9e7cfa2d-411e-4a08-855f-46b3ca849039
+2024-01-02 10:56:44 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:56:44 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:56:44 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: how many alerts
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 10:56:44 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:56:46 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 10:56:46 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+num_alerts = len(dfs[0])
+
+# Declare result var
+result = {
+    "type": "number",
+    "value": num_alerts
+}
+            ```
+            
+2024-01-02 10:56:46 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:56:46 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:56:46 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:56:46 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 10:56:46 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:56:46 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 10:56:46 [INFO] Executed in: 2.2844789028167725s
+2024-01-02 10:56:46 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:57:09 [INFO] Question: quit()
+2024-01-02 10:57:09 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:57:09 [INFO] Prompt ID: 6fd91644-13da-4f24-9c4e-401b5dd06ae2
+2024-01-02 10:57:09 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:57:09 [INFO] Using cached response
+2024-01-02 10:57:09 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:57:09 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:57:09 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:57:09 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:57:09 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:57:09 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 10:57:09 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:57:09 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 10:57:09 [INFO] Executed in: 0.03652024269104004s
+2024-01-02 10:57:09 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:58:27 [INFO] Question: how many alerts
+2024-01-02 10:58:28 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:58:28 [INFO] Prompt ID: 61e8aff2-7ad2-4c43-9b46-a16a04beaafd
+2024-01-02 10:58:28 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:58:28 [INFO] Using cached response
+2024-01-02 10:58:28 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:58:28 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:58:28 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:58:28 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:58:28 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:58:28 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 10:58:28 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:58:28 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 10:58:28 [INFO] Executed in: 0.10229730606079102s
+2024-01-02 10:58:28 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:58:31 [INFO] Question: quit()
+2024-01-02 10:58:31 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:58:31 [INFO] Prompt ID: c5d1f1ef-5cbb-42bc-acea-efd80871c16a
+2024-01-02 10:58:31 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:58:31 [INFO] Using cached response
+2024-01-02 10:58:31 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:58:31 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:58:31 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:58:31 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:58:31 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:58:31 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 10:58:31 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:58:31 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 10:58:31 [INFO] Executed in: 0.018265247344970703s
+2024-01-02 10:58:31 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:59:07 [INFO] Question: how many alerts
+2024-01-02 10:59:07 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:59:07 [INFO] Prompt ID: 51c0fcc4-8a3d-4a17-90d0-1c7fe674a894
+2024-01-02 10:59:07 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:59:07 [INFO] Using cached response
+2024-01-02 10:59:07 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:59:07 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:59:07 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:59:07 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:59:07 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:59:07 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 10:59:07 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:59:07 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 10:59:07 [INFO] Executed in: 0.09708189964294434s
+2024-01-02 10:59:07 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:59:10 [INFO] Question: quit()
+2024-01-02 10:59:10 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:59:10 [INFO] Prompt ID: 61c79979-5e14-499d-98b5-00fdd4a0487e
+2024-01-02 10:59:10 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:59:10 [INFO] Using cached response
+2024-01-02 10:59:10 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:59:10 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:59:10 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:59:10 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:59:10 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:59:10 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 10:59:10 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:59:10 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 10:59:10 [INFO] Executed in: 0.01982903480529785s
+2024-01-02 10:59:10 [INFO] Executing Step 6: ResultParsing
+2024-01-02 10:59:37 [INFO] Question: how many alerts
+2024-01-02 10:59:37 [INFO] Running PandasAI with openai LLM...
+2024-01-02 10:59:37 [INFO] Prompt ID: 1365c591-84b3-4a40-97cf-3affe55963ec
+2024-01-02 10:59:37 [INFO] Executing Step 0: CacheLookup
+2024-01-02 10:59:37 [INFO] Using cached response
+2024-01-02 10:59:37 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 10:59:37 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 10:59:37 [INFO] Executing Step 3: CachePopulation
+2024-01-02 10:59:37 [INFO] Executing Step 4: CodeExecution
+2024-01-02 10:59:37 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 10:59:37 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 10:59:37 [INFO] Executing Step 5: ResultValidation
+2024-01-02 10:59:37 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 10:59:37 [INFO] Executed in: 0.10366678237915039s
+2024-01-02 10:59:37 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:00:09 [INFO] Question: show dataframe
+2024-01-02 11:00:09 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:00:09 [INFO] Prompt ID: ee282e00-85b8-4f1c-a9d0-9d83e49ff4fd
+2024-01-02 11:00:09 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:00:09 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:00:09 [INFO] Using prompt: <dataframe>
+dfs[0]:313x13
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: show dataframe
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-02 11:00:09 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:00:11 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-02 11:00:11 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+result = {"type": "dataframe", "value": df}
+
+result
+            ```
+            
+2024-01-02 11:00:11 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:00:11 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:00:11 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:00:11 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'dataframe', 'value': df}
+result
+        ```
+2024-01-02 11:00:11 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:00:11 [INFO] Answer: {'type': 'dataframe', 'value':                                  severity signal_type alert_state  ...                     source_created_id      last_modified_date_time last_modified_user_name
+start_date_time                                                    ...                                                                                           
+2023-12-24 06:56:27.051624+00:00     Sev3         Log         New  ...  fe85eb9a-75aa-49d8-b610-9e6efde24a7a  2023-12-24T06:56:27.051624Z                  System
+2023-12-24 07:06:23.500119+00:00     Sev3         Log         New  ...  1bab41d3-706e-4566-9f63-77315c2005b6  2023-12-24T07:06:23.500119Z                  System
+2023-12-24 07:21:23.281760+00:00     Sev3         Log         New  ...  6dcf2af3-0d7e-4000-bc22-a7644fe480ea   2023-12-24T07:21:23.28176Z                  System
+2023-12-24 09:16:22.544307+00:00     Sev3         Log         New  ...  e685f8e4-17a1-445d-994b-298e6770c9d6  2023-12-24T09:16:22.544307Z                  System
+2023-12-24 10:06:22.893960+00:00     Sev3         Log         New  ...  8ba65e1c-2cdf-41b2-ba18-260024498c8e   2023-12-24T10:06:22.89396Z                  System
+...                                   ...         ...         ...  ...                                   ...                          ...                     ...
+2024-01-01 18:26:23.555340+00:00     Sev3         Log         New  ...  c901e3d4-49fc-453a-88ce-21be642a6bde   2024-01-01T18:26:23.55534Z                  System
+2024-01-01 19:33:52.704743+00:00     Sev3         Log         New  ...  21cd2804-6782-4341-a6cf-dfbcf2b0ee38  2024-01-01T19:33:52.704743Z                  System
+2024-01-01 20:01:22.555689+00:00     Sev3         Log         New  ...  b62f22a8-bf58-49c1-8558-8be488b6ffdb  2024-01-01T20:01:22.555689Z                  System
+2024-01-01 21:11:24.131165+00:00     Sev3         Log         New  ...  0938ee51-d34b-41cc-9411-8c20d45c85df  2024-01-01T21:11:24.131165Z                  System
+2024-01-01 22:06:25.689930+00:00     Sev3         Log         New  ...  c2acb05f-d707-4bd2-8898-d80250de910b   2024-01-01T22:06:25.68993Z                  System
+
+[313 rows x 13 columns]}
+2024-01-02 11:00:11 [INFO] Executed in: 1.8122031688690186s
+2024-01-02 11:00:11 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:00:18 [INFO] Question: how many alerts
+2024-01-02 11:00:18 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:00:18 [INFO] Prompt ID: 9575c94c-0d22-4a79-9624-6d063111cb75
+2024-01-02 11:00:18 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:00:18 [INFO] Using cached response
+2024-01-02 11:00:18 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:00:18 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:00:18 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:00:18 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:00:18 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:00:18 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 11:00:18 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:00:18 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 11:00:18 [INFO] Executed in: 0.019438982009887695s
+2024-01-02 11:00:18 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:00:22 [INFO] Question: quit()
+2024-01-02 11:00:22 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:00:22 [INFO] Prompt ID: b500b256-81f9-4095-841b-0ce876097cfc
+2024-01-02 11:00:22 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:00:22 [INFO] Using cached response
+2024-01-02 11:00:22 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:00:22 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:00:22 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:00:22 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:00:22 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:00:22 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 11:00:22 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:00:22 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 11:00:22 [INFO] Executed in: 0.020678043365478516s
+2024-01-02 11:00:22 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:00:43 [INFO] Question: how many alerts
+2024-01-02 11:00:43 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:00:43 [INFO] Prompt ID: c6f4ef67-f4c4-4fa1-8731-cb686a21aff3
+2024-01-02 11:00:43 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:00:43 [INFO] Using cached response
+2024-01-02 11:00:43 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:00:43 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:00:43 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:00:43 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:00:43 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:00:43 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 11:00:43 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:00:43 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 11:00:43 [INFO] Executed in: 0.10151290893554688s
+2024-01-02 11:00:43 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:00:46 [INFO] Question: quit()
+2024-01-02 11:00:46 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:00:46 [INFO] Prompt ID: 091139ea-8b99-44bc-b6c4-6577c3034435
+2024-01-02 11:00:46 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:00:46 [INFO] Using cached response
+2024-01-02 11:00:46 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:00:46 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:00:46 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:00:46 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:00:46 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:00:46 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 11:00:46 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:00:46 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 11:00:46 [INFO] Executed in: 0.018280982971191406s
+2024-01-02 11:00:46 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:01:13 [INFO] Question: how many alerts
+2024-01-02 11:01:13 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:01:13 [INFO] Prompt ID: b23be77f-3fee-4d58-8313-0a1e5b0c884c
+2024-01-02 11:01:13 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:01:13 [INFO] Using cached response
+2024-01-02 11:01:13 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:01:13 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:01:13 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:01:13 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:01:13 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:01:13 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 11:01:13 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:01:13 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 11:01:13 [INFO] Executed in: 0.10019731521606445s
+2024-01-02 11:01:13 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:01:16 [INFO] Question: quit()
+2024-01-02 11:01:16 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:01:16 [INFO] Prompt ID: 8c10b0d4-94fb-4cb1-9cb5-c782411dbb23
+2024-01-02 11:01:16 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:01:16 [INFO] Using cached response
+2024-01-02 11:01:16 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:01:16 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:01:16 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:01:16 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:01:16 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:01:16 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 11:01:16 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:01:16 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 11:01:16 [INFO] Executed in: 0.01766800880432129s
+2024-01-02 11:01:16 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:01:30 [INFO] Question: how many alerts
+2024-01-02 11:01:30 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:01:30 [INFO] Prompt ID: 98041a26-2cbf-4ba0-9713-5593573c9e66
+2024-01-02 11:01:30 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:01:30 [INFO] Using cached response
+2024-01-02 11:01:30 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:01:30 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:01:30 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:01:30 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:01:30 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:01:30 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 11:01:30 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:01:30 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 11:01:30 [INFO] Executed in: 0.10213112831115723s
+2024-01-02 11:01:30 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:01:32 [INFO] Question: quit()
+2024-01-02 11:01:32 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:01:32 [INFO] Prompt ID: 7fdcd655-7556-4690-87a6-14b1c68a9f6a
+2024-01-02 11:01:32 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:01:32 [INFO] Using cached response
+2024-01-02 11:01:32 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:01:32 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:01:32 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:01:32 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:01:32 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:01:32 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 11:01:32 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:01:32 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 11:01:32 [INFO] Executed in: 0.01903986930847168s
+2024-01-02 11:01:32 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:01:58 [INFO] Question: how many alerts
+2024-01-02 11:01:58 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:01:58 [INFO] Prompt ID: b58290f8-9552-4de5-a178-0ec5a735233d
+2024-01-02 11:01:58 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:01:58 [INFO] Using cached response
+2024-01-02 11:01:58 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:01:58 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:01:58 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:01:58 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:01:58 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:01:58 [INFO] 
+Code running:
+```
+num_alerts = len(dfs[0])
+result = {'type': 'number', 'value': num_alerts}
+        ```
+2024-01-02 11:01:58 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:01:58 [INFO] Answer: {'type': 'number', 'value': 313}
+2024-01-02 11:01:58 [INFO] Executed in: 0.09695792198181152s
+2024-01-02 11:01:58 [INFO] Executing Step 6: ResultParsing
+2024-01-02 11:02:01 [INFO] Question: quit()
+2024-01-02 11:02:01 [INFO] Running PandasAI with openai LLM...
+2024-01-02 11:02:01 [INFO] Prompt ID: 53c31124-8fa9-426d-b075-a91f2dbb17fb
+2024-01-02 11:02:01 [INFO] Executing Step 0: CacheLookup
+2024-01-02 11:02:01 [INFO] Using cached response
+2024-01-02 11:02:01 [INFO] Executing Step 1: PromptGeneration
+2024-01-02 11:02:01 [INFO] Executing Step 2: CodeGenerator
+2024-01-02 11:02:01 [INFO] Executing Step 3: CachePopulation
+2024-01-02 11:02:01 [INFO] Executing Step 4: CodeExecution
+2024-01-02 11:02:01 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-02 11:02:01 [INFO] 
+Code running:
+```
+df = dfs[0]
+result = {'type': 'string', 'value': f'The number of rows in the dataframe is {len(df)}.'}
+result
+        ```
+2024-01-02 11:02:01 [INFO] Executing Step 5: ResultValidation
+2024-01-02 11:02:01 [INFO] Answer: {'type': 'string', 'value': 'The number of rows in the dataframe is 313.'}
+2024-01-02 11:02:01 [INFO] Executed in: 0.01933002471923828s
+2024-01-02 11:02:01 [INFO] Executing Step 6: ResultParsing

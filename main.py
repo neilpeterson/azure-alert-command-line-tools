@@ -97,25 +97,30 @@ def plot_console():
 @click.command()
 def pandas_ai():
 
-    daily_alerts = return_df()
-    df = SmartDataframe(daily_alerts, config={"llm": llm})
-
     print('Alerts loaded, please enter a query or type \'quit()\' to exit')
 
-    user_input = input()
-    openai_response = df.chat(user_input)
+    user_input = ""
+    while user_input != "quit()":
 
-    if isinstance(openai_response, SmartDataframe):
+        daily_alerts = return_df()
+        df = SmartDataframe(daily_alerts, config={"llm": llm})
 
-        print('Enter a new query or type \'quit()\' to exit')
-        print()
+        user_input = input()
+        openai_response = df.chat(user_input)
 
-        # Resample the DataFrame by day and count the number of alerts each day
-        daily_alerts = openai_response.resample('H').size()
-        print(openai_response)
-    else:
-        print(openai_response)
-        print('Enter a new query or type \'quit()\' to exit')
+        if isinstance(openai_response, SmartDataframe):
+
+            print('Enter a new query or type \'quit()\' to exit')
+            print()
+
+            # Resample the DataFrame by day and count the number of alerts each day
+            daily_alerts = openai_response.resample('H').size()
+            print(openai_response)
+        else:
+            if user_input != "quit()":
+                print(openai_response)
+                print()
+                print('Enter a new query or type \'quit()\' to exit')
 
 cli.add_command(load_alerts)
 cli.add_command(plot_pandas)
