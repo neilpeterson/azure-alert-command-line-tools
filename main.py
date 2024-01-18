@@ -9,8 +9,8 @@ import click
 import csv
 import os
 
-subscription = "65ae371b-6c46-4e36-8a7b-93efb1f2c2bd"
-llm = OpenAI(api_token='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')
+subscription = ""
+llm = OpenAI(api_token='')
 alerts_csv = "alerts.csv"
 plot_terminal = True
 plot_window = True
