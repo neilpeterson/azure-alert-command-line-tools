@@ -1,4 +1,4 @@
-# Azure Alerts Command Line Tools
+# Azure Alerts Command Line Tools with OpenAI
 
 Fun project, attempting to create a command line tool to manage Azure Alerts which includes in terminal pltting and Open API integration.
 
