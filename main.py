@@ -9,11 +9,11 @@ import click
 import csv
 import os
 
-subscription = ""
-llm = OpenAI(api_token='')
+subscription = "65ae371b-6c46-4e36-8a7b-93efb1f2c2bd"
+llm = OpenAI(api_token='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')
 alerts_csv = "alerts.csv"
 plot_terminal = True
-plot_window = False
+plot_window = True
 
 @click.group()
 def cli():
