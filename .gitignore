@@ -1,1 +1,5 @@
 venv
+.DS_Store
+alerts.csv
+./cache
+./exports
