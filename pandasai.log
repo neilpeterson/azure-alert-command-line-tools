@@ -2205,3 +2205,173 @@ result = {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-ale
 2024-01-17 20:02:59 [INFO] Answer: {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
 2024-01-17 20:02:59 [INFO] Executed in: 9.254012107849121s
 2024-01-17 20:02:59 [INFO] Executing Step 6: ResultParsing
+2024-01-17 20:10:40 [INFO] Question: plot alerts by signial type over time, use simple date format
+2024-01-17 20:10:40 [INFO] Running PandasAI with openai LLM...
+2024-01-17 20:10:40 [INFO] Prompt ID: f69a0edf-e68c-4e18-a5c8-52cf4bcf06a2
+2024-01-17 20:10:40 [INFO] Executing Step 0: CacheLookup
+2024-01-17 20:10:40 [INFO] Executing Step 1: PromptGeneration
+2024-01-17 20:10:40 [INFO] Using prompt: <dataframe>
+dfs[0]:332x14
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,monitor_condition_resolved_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: plot alerts by signial type over time, use simple date format
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-17 20:10:40 [INFO] Executing Step 2: CodeGenerator
+2024-01-17 20:10:56 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-17 20:10:56 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df['date'] = df['last_modified_date_time'].dt.date
+df_grouped = df.groupby(['date', 'signal_type']).size().unstack(fill_value=0)
+
+# Plotting
+plt.figure(figsize=(10, 6))
+df_grouped.plot(kind='line', marker='o')
+plt.xlabel('Date')
+plt.ylabel('Count')
+plt.title('Alerts by Signal Type over Time')
+plt.legend(title='Signal Type')
+
+# Save the plot to a file
+plt.savefig('alerts_by_signal_type.png')
+
+# Declare result var
+result = {
+    "type": "plot",
+    "value": "alerts_by_signal_type.png"
+}
+            ```
+            
+2024-01-17 20:10:56 [INFO] Executing Step 3: CachePopulation
+2024-01-17 20:10:56 [INFO] Executing Step 4: CodeExecution
+2024-01-17 20:10:56 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-17 20:10:56 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df['date'] = df['last_modified_date_time'].dt.date
+df_grouped = df.groupby(['date', 'signal_type']).size().unstack(fill_value=0)
+plt.figure(figsize=(10, 6))
+df_grouped.plot(kind='line', marker='o')
+plt.xlabel('Date')
+plt.ylabel('Count')
+plt.title('Alerts by Signal Type over Time')
+plt.legend(title='Signal Type')
+plt.savefig('/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
+        ```
+2024-01-17 20:10:57 [INFO] Executing Step 5: ResultValidation
+2024-01-17 20:10:57 [INFO] Answer: {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
+2024-01-17 20:10:57 [INFO] Executed in: 16.438128232955933s
+2024-01-17 20:10:57 [INFO] Executing Step 6: ResultParsing
+2024-01-17 20:11:37 [INFO] Question: plot alerts by signial type over time, hide dates
+2024-01-17 20:11:37 [INFO] Running PandasAI with openai LLM...
+2024-01-17 20:11:37 [INFO] Prompt ID: 20fd930d-890d-48ae-8de8-f8ba4346aa29
+2024-01-17 20:11:37 [INFO] Executing Step 0: CacheLookup
+2024-01-17 20:11:37 [INFO] Executing Step 1: PromptGeneration
+2024-01-17 20:11:37 [INFO] Using prompt: <dataframe>
+dfs[0]:332x14
+severity,signal_type,alert_state,monitor_condition,target_resource,target_resource_name,target_resource_group,target_resource_type,monitor_service,alert_rule,source_created_id,last_modified_date_time,monitor_condition_resolved_date_time,last_modified_user_name
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,fe85eb9a-75aa-49d8-b61...,2023-12-24T06:56:27.05...,,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,6dcf2af3-0d7e-4000-bc2...,2023-12-24T07:21:23.28...,,System
+Sev3,Log,New,Fired,/subscriptions/65ae371...,apim-lab-stv2-001,apim-lab-stv2-001,profiles,Log Alerts V2,/subscriptions/65ae371...,1bab41d3-706e-4566-9f6...,2023-12-24T07:06:23.50...,,System
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+```
+
+Q: plot alerts by signial type over time, hide dates
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+
+Generate python code and return full updated code:
+2024-01-17 20:11:37 [INFO] Executing Step 2: CodeGenerator
+2024-01-17 20:11:45 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-01-17 20:11:45 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df['last_modified_date'] = df['last_modified_date_time'].dt.date
+df['last_modified_time'] = df['last_modified_date_time'].dt.time
+
+plt.figure(figsize=(10, 6))
+df.groupby(['signal_type', 'last_modified_date']).size().unstack().plot(kind='bar', stacked=True)
+plt.xlabel('Signal Type')
+plt.ylabel('Count')
+plt.title('Alerts by Signal Type over Time')
+plt.legend(title='Date', bbox_to_anchor=(1, 1))
+plt.xticks(rotation=0)
+plt.show()
+
+# Declare result var
+result = {"type": "plot", "value": "alerts_by_signal_type.png"}
+            ```
+            
+2024-01-17 20:11:45 [INFO] Executing Step 3: CachePopulation
+2024-01-17 20:11:45 [INFO] Executing Step 4: CodeExecution
+2024-01-17 20:11:45 [INFO] Saving charts to /Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png
+2024-01-17 20:11:45 [INFO] 
+Code running:
+```
+df = dfs[0]
+df['last_modified_date_time'] = pd.to_datetime(df['last_modified_date_time'])
+df['last_modified_date'] = df['last_modified_date_time'].dt.date
+df['last_modified_time'] = df['last_modified_date_time'].dt.time
+plt.figure(figsize=(10, 6))
+df.groupby(['signal_type', 'last_modified_date']).size().unstack().plot(kind='bar', stacked=True)
+plt.xlabel('Signal Type')
+plt.ylabel('Count')
+plt.title('Alerts by Signal Type over Time')
+plt.legend(title='Date', bbox_to_anchor=(1, 1))
+plt.xticks(rotation=0)
+plt.show()
+result = {'type': 'plot', 'value': '/Users/neilpeterson/Documents/code/azure-alert-command-line-tools/exports/charts/temp_chart.png'}
+        ```
