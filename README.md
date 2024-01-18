@@ -73,7 +73,7 @@ start_date_time                                                    ...
 2024-01-17 18:57:52.388607+00:00     Sev3      Metric         New  ...  2024-01-17T19:04:46.051213Z           2024-01-17T19:04:46.43735Z                  System
 2024-01-17 22:14:58.704809+00:00     Sev3      Metric         New  ...  2024-01-17T22:29:59.263473Z          2024-01-17T22:29:59.704696Z                  System
 
-> how many alerts have a singnal type of log
+> how many alerts have a singnal type of metric
 6
 
 > Plot all alerts by signal type over time
