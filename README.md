@@ -43,7 +43,7 @@ Results:
 *Plot alerts using Pandas:*
 
 ```
-python ./main.py plot-console
+python ./main.py plot-pandas
 ```
 
 Results:
